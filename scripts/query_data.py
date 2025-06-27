@@ -1,7 +1,6 @@
 import mysql.connector
 import pandas as pd
 
-# Connect to MySQL
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -9,7 +8,7 @@ conn = mysql.connector.connect(
     database="college_db"
 )
 
-# Query 1: Top 5 Colleges by Placement (using 'Placement' column)
+
 query1 = """
 SELECT name, Placement
 FROM colleges
@@ -20,7 +19,7 @@ df1 = pd.read_sql(query1, conn)
 print("\n🔝 Top 5 Colleges by Placement:\n")
 print(df1)
 
-# Query 2: Average UG Fee by State
+
 query2 = """
 SELECT state, AVG(UG_fee) AS avg_ug_fee
 FROM colleges
@@ -31,7 +30,7 @@ df2 = pd.read_sql(query2, conn)
 print("\n💸 Average UG Fee by State:\n")
 print(df2)
 
-# Query 3: Number of Colleges by State (since no 'program_offered')
+
 query3 = """
 SELECT state, COUNT(*) AS num_colleges
 FROM colleges

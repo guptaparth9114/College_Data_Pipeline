@@ -3,10 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-# Create 'plots' directory if it doesn't exist
+
 os.makedirs('../plots', exist_ok=True)
 
-# Connect to MySQL
+
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -14,7 +14,7 @@ conn = mysql.connector.connect(
     database="college_db"
 )
 
-# Query 1: Average UG Fee by State
+
 query1 = """
 SELECT state, AVG(UG_fee) AS avg_ug_fee
 FROM colleges
@@ -23,7 +23,7 @@ ORDER BY avg_ug_fee DESC;
 """
 df_fee = pd.read_sql(query1, conn)
 
-# Plot: Average UG Fee by State
+
 plt.figure(figsize=(12, 6))
 plt.bar(df_fee['state'], df_fee['avg_ug_fee'], color='skyblue')
 plt.xticks(rotation=45, ha='right')
@@ -31,10 +31,10 @@ plt.title("Average UG Fee by State")
 plt.ylabel("Fee (₹)")
 plt.xlabel("State")
 plt.tight_layout()
-plt.savefig('../plots/avg_ug_fee_by_state.png')  # ✅ Save as PNG
+plt.savefig('../plots/avg_ug_fee_by_state.png')  
 plt.close()
 
-# Query 2: Top 5 Colleges by Placement
+
 query2 = """
 SELECT name, Placement
 FROM colleges
@@ -43,14 +43,14 @@ LIMIT 5;
 """
 df_place = pd.read_sql(query2, conn)
 
-# Plot: Top 5 Colleges by Placement
+
 plt.figure(figsize=(10, 5))
 plt.barh(df_place['name'], df_place['Placement'], color='seagreen')
 plt.xlabel("Placement Rating")
 plt.title("Top 5 Colleges by Placement")
 plt.gca().invert_yaxis()
 plt.tight_layout()
-plt.savefig('../plots/top_5_colleges_by_placement.png')  # ✅ Save as PNG
+plt.savefig('../plots/top_5_colleges_by_placement.png')  
 plt.close()
 
 conn.close()
