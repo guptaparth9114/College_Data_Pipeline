@@ -1,8 +1,12 @@
 import pandas as pd
 import mysql.connector
+import os
 
 
-df = pd.read_csv('../data/Indian_Engineering_Colleges_Dataset.csv')
+# df = pd.read_csv('../data/Indian_Engineering_Colleges_Dataset.csv')
+df = pd.read_csv('data/Indian_Engineering_Colleges_Dataset.csv')
+
+
 df = df.drop(columns=['Unnamed: 0'])
 
 
@@ -20,9 +24,10 @@ float_columns = ['Rating', 'Academic', 'Accommodation', 'Faculty', 'Infrastructu
 for col in float_columns:
     df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
 
+mysql_host = os.getenv("MYSQL_HOST", "localhost")  # fallback to localhost
 
 conn = mysql.connector.connect(
-    host="localhost",
+    host=mysql_host,
     user="root",
     password="Jaypee@123",
     database="college_db"
