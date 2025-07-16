@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy files and folders from your local to container
 COPY requirements.txt .
 COPY scripts/ ./scripts/
-COPY data/ ./data/
+# COPY data/ ./data/
 COPY db/ ./db/
 
 # Install dependencies
