@@ -19,7 +19,7 @@ RUN pip install --upgrade pip && \
 # Copy the rest of the project files
 COPY scripts/ ./scripts/
 COPY db/ ./db/
-# COPY data/ ./data/  # Uncomment if needed later
+# COPY data/ ./data/  # Uncoomment if needed later
 
 # Set default command
 CMD ["python", "scripts/load_data.py"]
