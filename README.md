@@ -4,9 +4,10 @@ A mini data analytics project that builds a complete pipeline to collect, clean,
 
 ---
 
-## 📌 Objective
+## 📌 Objectives
 
 To demonstrate a full data pipeline by:
+
 - Collecting a dummy college dataset
 - Importing and cleaning the data
 - Storing it in a MySQL database
@@ -16,7 +17,6 @@ To demonstrate a full data pipeline by:
 ---
 
 ## 📁 Project Structure
-
 
 ---
 
@@ -33,6 +33,7 @@ To demonstrate a full data pipeline by:
 ## 📊 Dataset Description
 
 The dataset includes:
+
 - College Name, State
 - UG/PG Tuition Fees
 - Ratings on: Academic, Accommodation, Faculty, Infrastructure, Placement, Social Life
@@ -43,14 +44,13 @@ The dataset includes:
 
 ### 1. Clone the Repository
 
-
 git clone https://github.com/your-username/College_Data_Pipeline.git
 cd College_Data_Pipeline
 
 ### 2. Create Virtual Environment
 
 python -m venv venv
-venv\Scripts\activate   # On Windows
+venv\Scripts\activate # On Windows
 pip install -r requirements.txt
 
 ### 3. Install Dependencies
