@@ -1,17 +1,25 @@
-# Use official Python image
+# Use a slim Python 3.11 image
 FROM python:3.11-slim
 
-# Set working directory inside the container
+# Set environment variables to prevent Python from writing .pyc files and buffering stdout
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set working directory inside container
 WORKDIR /app
 
-# Copy files and folders from your local to container
+# Copy only requirements first for layer caching
 COPY requirements.txt .
-COPY scripts/ ./scripts/
-# COPY data/ ./data/
-COPY db/ ./db/
 
 # Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    rm -rf /root/.cache
 
-# Default command to run (you can change to any script later)
+# Copy the rest of the project files
+COPY scripts/ ./scripts/
+COPY db/ ./db/
+# COPY data/ ./data/  # Uncomment if needed later
+
+# Set default command
 CMD ["python", "scripts/load_data.py"]
